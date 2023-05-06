@@ -7,7 +7,7 @@ class Ui_juzEditWindow(object):
         juzEditWindow.setObjectName("juzEditWindow")
         juzEditWindow.resize(598, 555)
         font = QtGui.QFont()
-        font.setPointSize(1)
+        font.setPointSize(8)
         juzEditWindow.setFont(font)
         juzEditWindow.setSizeGripEnabled(False)
         juzEditWindow.setModal(False)
@@ -71,6 +71,18 @@ class Ui_juzEditWindow(object):
         juzEditWindow.setWindowIcon(icon) # icon top left
         juzEditWindow.setWindowTitle('JuzEditor') # name of the window
 
+        # adds functionality to the buttons, when clicked the rating is set
+        self.perfectRadio.toggled.connect(lambda: self.setRating("Perfect"))
+        self.goodRadio.toggled.connect(lambda: self.setRating("Good"))
+        self.okayRadio.toggled.connect(lambda: self.setRating("Okay"))
+        self.notAvailableRadio.toggled.connect(lambda: self.setRating("N/A"))
+
+        # in order to see in the terminal 
+        self.perfectRadio.clicked.connect(self.ratingSelected)
+        self.goodRadio.clicked.connect(self.ratingSelected)
+        self.okayRadio.clicked.connect(self.ratingSelected)
+        self.notAvailableRadio.clicked.connect(self.ratingSelected)
+
         self.retranslateUi(juzEditWindow)
         QtCore.QMetaObject.connectSlotsByName(juzEditWindow)
 
@@ -82,6 +94,9 @@ class Ui_juzEditWindow(object):
         self.listWidget.setSortingEnabled(False)
         item = self.listWidget.item(0)
         item.setText(_translate("juzEditWindow", "Juz 1"))
+        itemTwo = QtWidgets.QListWidgetItem()
+        self.listWidget.addItem(itemTwo)
+        itemTwo.setText(_translate("juzEditWindow", "Juz 2"))
         self.listWidget.setSortingEnabled(__sortingEnabled)
         self.label_2.setText(_translate("juzEditWindow", "Reviews :"))
         self.perfectRadio.setText(_translate("juzEditWindow", "Perfect"))
@@ -90,6 +105,27 @@ class Ui_juzEditWindow(object):
         self.notAvailableRadio.setText(_translate("juzEditWindow", "N/A"))
         self.actiontest.setText(_translate("juzEditWindow", "test"))
 
+    def setRating(self, rating):
+        # get the selected item in the list
+        selected = self.listWidget.currentItem()
+
+        if selected is not None:
+            # set the rating as the item data
+            selected.setData(Qt.UserRole, rating)
+
+    def ratingSelected(self):
+        selected_item = self.listWidget.currentItem()
+        selected_rating = None
+        if self.perfectRadio.isChecked():
+            selected_rating = 100
+        elif self.goodRadio.isChecked():
+            selected_rating = 75
+        elif self.okayRadio.isChecked():
+            selected_rating = 50
+        elif self.notAvailableRadio.isChecked():
+            selected_rating = 0
+        if selected_item is not None and selected_rating is not None:
+            print(f"{selected_item.text()} : {selected_rating}")
 
 if __name__ == "__main__":
     import sys

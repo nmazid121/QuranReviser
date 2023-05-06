@@ -76,7 +76,7 @@ class Ui_interfaceWindow(object):
         font = QtGui.QFont()
         font.setPointSize(8)
         self.progressBar.setFont(font)
-        self.progressBar.setProperty("value", 24)
+        self.progressBar.setProperty("value", 0)
         self.progressBar.setOrientation(QtCore.Qt.Horizontal)
         self.progressBar.setObjectName("progressBar")
         self.horizontalLayout_2.addWidget(self.progressBar)

@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>juzEditWindow</class>
+ <widget class="QDialog" name="juzEditWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>598</width>
+    <height>555</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>1</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>false</bool>
+  </property>
+  <property name="modal">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>30</y>
+     <width>281</width>
+     <height>471</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Juz Editor</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QListWidget" name="listWidget">
+      <item>
+       <property name="text">
+        <string>Juz 1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Juz 2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Juz 3</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Juz 4</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Juz 5</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Juz 6</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Juz 7</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Juz 8</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Juz 9</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Juz 10</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Juz 11</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Juz 12</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Juz 13</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Juz 14</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Juz 15</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Juz 16</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Juz 17</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Juz 18</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Juz 19</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Juz 20</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Juz 21</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Juz 22</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Juz 23</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Juz 24</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Juz 25</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Juz 26</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Juz 27</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Juz 28</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Juz 29</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Juz 30</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="verticalLayoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>220</y>
+     <width>160</width>
+     <height>107</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <widget class="QLabel" name="label_2">
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Reviews :</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QRadioButton" name="perfectRadio">
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Perfect</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QRadioButton" name="goodRadio">
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Good</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QRadioButton" name="okayRadio">
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Okay</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QRadioButton" name="notAvailableRadio">
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>N/A</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QDialogButtonBox" name="buttonBox">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>480</y>
+     <width>156</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>8</pointsize>
+    </font>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <property name="standardButtons">
+    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+   </property>
+   <property name="centerButtons">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <action name="actiontest">
+   <property name="text">
+    <string>test</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>juzEditWindow</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>447</x>
+     <y>491</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>298</x>
+     <y>277</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
