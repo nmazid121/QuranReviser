@@ -2,6 +2,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QIcon 
 from PyQt5.QtCore import Qt
 
+
+
+
 class Ui_juzEditWindow(object):
     def setupUi(self, juzEditWindow):
         juzEditWindow.setObjectName("juzEditWindow")
@@ -71,12 +74,6 @@ class Ui_juzEditWindow(object):
         juzEditWindow.setWindowIcon(icon) # icon top left
         juzEditWindow.setWindowTitle('JuzEditor') # name of the window
 
-        # adds functionality to the buttons, when clicked the rating is set
-        self.perfectRadio.toggled.connect(lambda: self.setRating("Perfect"))
-        self.goodRadio.toggled.connect(lambda: self.setRating("Good"))
-        self.okayRadio.toggled.connect(lambda: self.setRating("Okay"))
-        self.notAvailableRadio.toggled.connect(lambda: self.setRating("N/A"))
-
         # in order to see in the terminal 
         self.perfectRadio.clicked.connect(self.ratingSelected)
         self.goodRadio.clicked.connect(self.ratingSelected)
@@ -105,28 +102,60 @@ class Ui_juzEditWindow(object):
         self.notAvailableRadio.setText(_translate("juzEditWindow", "N/A"))
         self.actiontest.setText(_translate("juzEditWindow", "test"))
 
-    def setRating(self, rating):
-        # get the selected item in the list
-        selected = self.listWidget.currentItem()
-
-        if selected is not None:
-            # set the rating as the item data
-            selected.setData(Qt.UserRole, rating)
 
     def ratingSelected(self):
         selected_item = self.listWidget.currentItem()
-        selected_rating = None
         if self.perfectRadio.isChecked():
-            selected_rating = 100
+            juz_num = int(selected_item.text().split()[-1])
+            juzNumber_dictionary[f'Juz {juz_num}'] = 100
+            print(f' The Juz {juz_num}' + f': {juzNumber_dictionary[f"Juz {juz_num}"]}')
         elif self.goodRadio.isChecked():
-            selected_rating = 75
+            juz_num = int(selected_item.text().split()[-1])
+            juzNumber_dictionary[f'Juz {juz_num}'] = 75
+            print(f'The Juz {juz_num}' + f': {juzNumber_dictionary[f"Juz {juz_num}"]}')
         elif self.okayRadio.isChecked():
-            selected_rating = 50
+            juz_num = int(selected_item.text().split()[-1])
+            juzNumber_dictionary[f'Juz {juz_num}'] = 50
+            print(f'The Juz {juz_num}' + f': {juzNumber_dictionary[f"Juz {juz_num}"]}')
         elif self.notAvailableRadio.isChecked():
-            selected_rating = 0
-        if selected_item is not None and selected_rating is not None:
-            print(f"{selected_item.text()} : {selected_rating}")
+            juz_num = int(selected_item.text().split()[-1])
+            juzNumber_dictionary[f'Juz {juz_num}'] = 0
+            print(f'The Juz {juz_num}' + f': {juzNumber_dictionary[f"Juz {juz_num}"]}')
 
+            
+# storing the data for the juz
+juzNumber_dictionary = {
+        'Juz 1': 10,
+        'Juz 2': 0,
+        'Juz 3': 0,
+        'Juz 4': 0,
+        'Juz 5': 0,
+        'Juz 6': 0,
+        'Juz 7': 0,
+        'Juz 8': 0,
+        'Juz 9': 0,
+        'Juz 10': 0,
+        'Juz 11': 0,
+        'Juz 12': 0,
+        'Juz 13': 0,
+        'Juz 14': 0,
+        'Juz 15': 0,
+        'Juz 16': 0,
+        'Juz 17': 0,
+        'Juz 18': 0,
+        'Juz 19': 0,
+        'Juz 20': 0,
+        'Juz 21': 0,
+        'Juz 22': 0,
+        'Juz 23': 0,
+        'Juz 24': 0,
+        'Juz 25': 0,
+        'Juz 26': 0,
+        'Juz 27': 0,
+        'Juz 28': 0,
+        'Juz 29': 0,
+        'Juz 30': 0
+    }
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

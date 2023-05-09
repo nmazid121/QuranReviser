@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QIcon 
 from PyQt5.QtCore import Qt
-from juzedit import Ui_juzEditWindow
+from juzedit import Ui_juzEditWindow, juzNumber_dictionary
 
 class Ui_interfaceWindow(object):
     def setupUi(self, interfaceWindow):
@@ -12,6 +12,15 @@ class Ui_interfaceWindow(object):
         interfaceWindow.setFont(font)
         interfaceWindow.setSizeGripEnabled(False)
         interfaceWindow.setModal(False)
+        # adding a new button
+        self.pushButton_two = QtWidgets.QPushButton(interfaceWindow)
+        self.pushButton_two.clicked.connect(self.update_juz_percentages)
+        self.pushButton_two.setGeometry(QtCore.QRect(800, 90, 75, 23))
+        font_two = QtGui.QFont()
+        font_two.setPointSize(8)
+        self.pushButton_two.setFont(font_two)
+        self.pushButton_two.setObjectName("pushButton_two")
+
         self.buttonBox = QtWidgets.QDialogButtonBox(interfaceWindow)
         self.buttonBox.setGeometry(QtCore.QRect(900, 760, 156, 23))
         font = QtGui.QFont()
@@ -77,6 +86,7 @@ class Ui_interfaceWindow(object):
         font.setPointSize(8)
         self.progressBar.setFont(font)
         self.progressBar.setProperty("value", 0)
+       # self.update_juz_percentages()
         self.progressBar.setOrientation(QtCore.Qt.Horizontal)
         self.progressBar.setObjectName("progressBar")
         self.horizontalLayout_2.addWidget(self.progressBar)
@@ -109,6 +119,7 @@ class Ui_interfaceWindow(object):
         self.label.setText(_translate("interfaceWindow", "Juz :"))
         self.label_2.setText(_translate("interfaceWindow", "Juz 1"))
         self.pushButton.setText(_translate("interfaceWindow", "Edit Juz"))
+        self.pushButton_two.setText(_translate("interaceWindow", "Update"))
         self.actiontest.setText(_translate("interfaceWindow", "test"))
     
     # Function to open the window
@@ -117,6 +128,11 @@ class Ui_interfaceWindow(object):
         self.ui = Ui_juzEditWindow()
         self.ui.setupUi(self.window)
         self.window.show()
+    
+    # Update the progress bar
+    def update_juz_percentages(self):
+        self.progressBar.setValue(juzNumber_dictionary["Juz 1"])
+
 
 if __name__ == "__main__":
     import sys
