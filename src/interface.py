@@ -2,7 +2,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QIcon 
 from PyQt5.QtCore import Qt
-from juzedit113058 import Ui_juzEditWindow, juzNumber_dictionary
+from juzedit import Ui_juzEditWindow, juzNumber_dictionary
 import json
 
 # Reading in the Juz dictionary from JSON file
@@ -11,7 +11,7 @@ with open('data.json', 'r') as f:
 
 class Ui_interfaceWindow(object):
     def setupUi(self, interfaceWindow):
-
+    
 
     # Qt Designer GUI Template                                            
         interfaceWindow.setObjectName("interfaceWindow")
@@ -204,6 +204,15 @@ class Ui_interfaceWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_35.sizePolicy().hasHeightForWidth())
         self.label_35.setSizePolicy(sizePolicy)
+
+        # Large Total Progress Bar
+        font = QtGui.QFont()
+        font.setPointSize(8)
+        self.progressBar = QtWidgets.QProgressBar(interfaceWindow)
+        self.progressBar.setGeometry(QtCore.QRect(330, 200, 241, 31))
+        self.progressBar.setObjectName("progressBar")
+        self.progressBar.setFont(font)
+
         font = QtGui.QFont()
         font.setPointSize(8)
         font.setBold(True)
@@ -1058,7 +1067,18 @@ class Ui_interfaceWindow(object):
         self.actiontest.setObjectName("actiontest")
         # end of Qt Designer GUI Template
 
+        # Changing colors of percentage bars, based on the percentage value it holds
+        def set_progress_bar_color(progress_bar, progress_percent):
+                if progress_percent == 75:
+                    progress_bar.setStyleSheet("QProgressBar::chunk { background-color: yellow; }")
+                elif progress_percent == 50:
+                    progress_bar.setStyleSheet("QProgressBar::chunk { background-color: red; }")
+                else:
+                    progress_bar.setStyleSheet("")
+
+
         # Initializing all of the progress bars percentages to the values from JSON file
+        # variable names suck, my bad : ) - note: variable names MATTER
         for juz, value in juz_data.items():
             if juz == "Juz 1":
                 self.juzOne_progressBar_2.setValue(value)
@@ -1121,6 +1141,16 @@ class Ui_interfaceWindow(object):
             elif juz == "Juz 30":
                 self.juzOne_progressBar_30.setValue(value)
 
+        total = 0
+        for juz, value in juz_data.items():
+            total += value
+    
+            average = total / 30
+            average_int = int(average)
+
+        self.progressBar.setValue(average_int)
+        print(average_int)
+
         self.retranslateUi(interfaceWindow)
         self.buttonBox.accepted.connect(interfaceWindow.accept) # type: ignore
         self.buttonBox.rejected.connect(interfaceWindow.reject) # type: ignore
@@ -1131,8 +1161,6 @@ class Ui_interfaceWindow(object):
         interfaceWindow.setWindowIcon(icon) # icon top left
         interfaceWindow.setWindowTitle('QuranRevisor') # name of the window
         interfaceWindow.setWindowFlags(Qt.Window | Qt.WindowMinimizeButtonHint | Qt.WindowCloseButtonHint)
-
-        
 
     # Qt Designer GUI Template - juz names and labels
     def retranslateUi(self, interfaceWindow):
@@ -1214,7 +1242,8 @@ class Ui_interfaceWindow(object):
         self.juzOne_progressBar_28.setValue(juzNumber_dictionary["Juz 28"])
         self.juzOne_progressBar_29.setValue(juzNumber_dictionary["Juz 29"])
         self.juzOne_progressBar_30.setValue(juzNumber_dictionary["Juz 30"])
-    
+
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
