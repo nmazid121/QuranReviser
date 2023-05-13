@@ -1,4 +1,3 @@
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QIcon 
 from PyQt5.QtCore import Qt
@@ -206,12 +205,21 @@ class Ui_interfaceWindow(object):
         self.label_35.setSizePolicy(sizePolicy)
 
         # Large Total Progress Bar
+        # Initializes the overall progress bar as the average of the 30 juz percentage
+        total = 0
+        for value in juz_data.values():
+            total += value
+    
+            average = total / 30
+            average_int = int(average)
+
         font = QtGui.QFont()
         font.setPointSize(8)
-        self.progressBar = QtWidgets.QProgressBar(interfaceWindow)
-        self.progressBar.setGeometry(QtCore.QRect(330, 200, 241, 31))
-        self.progressBar.setObjectName("progressBar")
-        self.progressBar.setFont(font)
+        self.main_progressBar = QtWidgets.QProgressBar(interfaceWindow)
+        self.main_progressBar.setGeometry(QtCore.QRect(330, 200, 241, 31))
+        self.main_progressBar.setObjectName("progressBar")
+        self.main_progressBar.setFont(font)
+        self.main_progressBar.setValue(average_int)
 
         font = QtGui.QFont()
         font.setPointSize(8)
@@ -1051,6 +1059,7 @@ class Ui_interfaceWindow(object):
         self.pushButton_2.setFont(font)
         self.pushButton_2.setObjectName("pushButton_2")
         self.pushButton_2.clicked.connect(self.update_juz_percentages)
+        self.pushButton_2.clicked.connect(self.update_averages)
         self.label_63 = QtWidgets.QLabel(interfaceWindow)
         self.label_63.setGeometry(QtCore.QRect(50, 410, 511, 121))
         font = QtGui.QFont()
@@ -1140,16 +1149,6 @@ class Ui_interfaceWindow(object):
                 self.juzOne_progressBar_29.setValue(value)
             elif juz == "Juz 30":
                 self.juzOne_progressBar_30.setValue(value)
-
-        total = 0
-        for juz, value in juz_data.items():
-            total += value
-    
-            average = total / 30
-            average_int = int(average)
-
-        self.progressBar.setValue(average_int)
-        print(average_int)
 
         self.retranslateUi(interfaceWindow)
         self.buttonBox.accepted.connect(interfaceWindow.accept) # type: ignore
@@ -1243,6 +1242,16 @@ class Ui_interfaceWindow(object):
         self.juzOne_progressBar_29.setValue(juzNumber_dictionary["Juz 29"])
         self.juzOne_progressBar_30.setValue(juzNumber_dictionary["Juz 30"])
 
+    # Updates the average bar, by recomputing the average from the updates values in the dictionary
+    # 'Update' button will update the main progress bar and all the other progress bars
+    def update_averages(self):
+        total = sum(juzNumber_dictionary.values())
+        average = total / 30
+        average_int = int(average)
+
+        # Update the average progress bar value
+        self.main_progressBar.setValue(average_int)
+        
 
 if __name__ == "__main__":
     import sys
