@@ -3,6 +3,7 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt
 from juzedit import Ui_juzEditWindow, juzNumber_dictionary
 import json
+from roundProgressBar import QRoundProgressBar
 
 # Reading in the Juz dictionary from JSON file
 with open('data.json', 'r') as f:
@@ -10,8 +11,8 @@ with open('data.json', 'r') as f:
 
 class Ui_interfaceWindow(object):
     def setupUi(self, interfaceWindow):
-    
 
+               
     # Qt Designer GUI Template                                            
         interfaceWindow.setObjectName("interfaceWindow")
         interfaceWindow.resize(1122, 885)
@@ -30,7 +31,7 @@ class Ui_interfaceWindow(object):
         self.buttonBox.setCenterButtons(False)
         self.buttonBox.setObjectName("buttonBox")
         self.label = QtWidgets.QLabel(interfaceWindow)
-        self.label.setGeometry(QtCore.QRect(630, 130, 101, 21))
+        self.label.setGeometry(QtCore.QRect(625, 130, 101, 21))
         font = QtGui.QFont()
         font.setFamily("Microsoft YaHei UI")
         font.setPointSize(12)
@@ -213,13 +214,38 @@ class Ui_interfaceWindow(object):
             average = total / 30
             average_int = int(average)
 
-        font = QtGui.QFont()
-        font.setPointSize(8)
-        self.main_progressBar = QtWidgets.QProgressBar(interfaceWindow)
-        self.main_progressBar.setGeometry(QtCore.QRect(330, 200, 241, 31))
-        self.main_progressBar.setObjectName("progressBar")
-        self.main_progressBar.setFont(font)
-        self.main_progressBar.setValue(average_int)
+
+        # create the QRoundProgressBar and add it to the layout
+        self.bar = QRoundProgressBar()
+        self.bar.setFixedSize(400, 400)
+        self.bar.setDataPenWidth(3)
+        self.bar.setOutlinePenWidth(3)
+        self.bar.setDonutThicknessRatio(0.85)
+        self.bar.setDecimals(0)
+        # self.bar.resetFormat()
+        self.bar.setNullPosition(90)
+        self.bar.setBarStyle(QRoundProgressBar.StyleDonut)
+        self.bar.setDataColors([(0., QtGui.QColor.fromRgb(255,0,0)), (0.5, QtGui.QColor.fromRgb(255,255,0)), (1., QtGui.QColor.fromRgb(0,255,0))])
+        self.bar.setValue(average_int)
+        # set the central widget to the interfaceWindow
+        lay = QtWidgets.QVBoxLayout(interfaceWindow)
+        lay.addWidget(self.bar)
+        horizontalLayoutWidget = QtWidgets.QWidget(interfaceWindow)
+        horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
+        horizontalLayoutWidget.setGeometry(QtCore.QRect(90, 220, 451, 461))
+
+        qprogressbarlayouthing = QtWidgets.QHBoxLayout(horizontalLayoutWidget)
+        qprogressbarlayouthing.setObjectName("qprogressbarlayouthing")
+        qprogressbarlayouthing.setContentsMargins(0, 0, 0, 0)
+        qprogressbarlayouthing.addWidget(self.bar)
+
+        label_3 = QtWidgets.QLabel(interfaceWindow)
+        label_3.setObjectName("label_3")
+        label_3.setGeometry(QtCore.QRect(170, 60, 321, 141))
+        label_3.setStyleSheet("background-image: url(C:/Users/noobd/OneDrive/Documents/GitHub/QuranReviser/src/titleIcon.png)")
+        label_3.setPixmap(QtGui.QPixmap("C:/Users/noobd/OneDrive/Documents/GitHub/QuranReviser/src/titleIcon.png"))
+        label_3.setScaledContents(True)
+
 
         font = QtGui.QFont()
         font.setPointSize(8)
@@ -1060,16 +1086,12 @@ class Ui_interfaceWindow(object):
         self.pushButton_2.setObjectName("pushButton_2")
         self.pushButton_2.clicked.connect(self.update_juz_percentages)
         self.pushButton_2.clicked.connect(self.update_averages)
-        self.label_63 = QtWidgets.QLabel(interfaceWindow)
-        self.label_63.setGeometry(QtCore.QRect(50, 410, 511, 121))
         font = QtGui.QFont()
-        font.setPointSize(17)
-        self.label_63.setFont(font)
-        self.label_63.setObjectName("label_63")
+        font.setPointSize(14)
         self.label_64 = QtWidgets.QLabel(interfaceWindow)
         self.label_64.setGeometry(QtCore.QRect(200, 40, 731, 61))
         font = QtGui.QFont()
-        font.setPointSize(31)
+        font.setPointSize(25)
         self.label_64.setFont(font)
         self.label_64.setObjectName("label_64")
         self.actiontest = QtWidgets.QAction(interfaceWindow)
@@ -1165,7 +1187,7 @@ class Ui_interfaceWindow(object):
     def retranslateUi(self, interfaceWindow):
         _translate = QtCore.QCoreApplication.translate
         interfaceWindow.setWindowTitle(_translate("interfaceWindow", "Dialog"))
-        self.label.setText(_translate("interfaceWindow", "Juz Name :"))
+        self.label.setText(_translate("interfaceWindow", "Juz Editor :"))
         self.label_34.setText(_translate("interfaceWindow", "Juz 01"))
         self.label_43.setText(_translate("interfaceWindow", "Juz 02"))
         self.label_42.setText(_translate("interfaceWindow", "Juz 03"))
@@ -1198,8 +1220,7 @@ class Ui_interfaceWindow(object):
         self.label_62.setText(_translate("interfaceWindow", "Juz 30"))
         self.pushButton.setText(_translate("interfaceWindow", "Edit Juz"))
         self.pushButton_2.setText(_translate("interfaceWindow", "Update"))
-        self.label_63.setText(_translate("interfaceWindow", "Adding Massive Circle Percentage Bar in Future *"))
-        self.label_64.setText(_translate("interfaceWindow", "Hifz Progress Tracker (tentative name)"))
+       # self.label_64.setText(_translate("interfaceWindow", "Hifz Progress Tracker (tentative name)"))
         self.actiontest.setText(_translate("interfaceWindow", "test"))
 
     # Function opens Juz Editor when user clicks 'Edit Juz' button
@@ -1250,7 +1271,7 @@ class Ui_interfaceWindow(object):
         average_int = int(average)
 
         # Update the average progress bar value
-        self.main_progressBar.setValue(average_int)
+        self.bar.setValue(average_int)
         
 
 if __name__ == "__main__":
