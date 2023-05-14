@@ -232,7 +232,7 @@ class Ui_interfaceWindow(object):
         lay.addWidget(self.bar)
         horizontalLayoutWidget = QtWidgets.QWidget(interfaceWindow)
         horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
-        horizontalLayoutWidget.setGeometry(QtCore.QRect(90, 220, 451, 461))
+        horizontalLayoutWidget.setGeometry(QtCore.QRect(99, 265, 451, 461))
 
         qprogressbarlayouthing = QtWidgets.QHBoxLayout(horizontalLayoutWidget)
         qprogressbarlayouthing.setObjectName("qprogressbarlayouthing")
