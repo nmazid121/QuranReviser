@@ -167,7 +167,7 @@ class Ui_juzEditWindow(object):
         QtCore.QMetaObject.connectSlotsByName(juzEditWindow)
 
         # Added the icon and top right window min, max, and close
-        icon = QIcon('C:/Users/noobd/Documents/GitHub/QuranReviser/src/quranIcon.PNG')
+        icon = QIcon('C:/Users/noobd/OneDrive/Documents/GitHub/QuranReviser/src/quranIcon2.png')
         juzEditWindow.setWindowIcon(icon) # icon top left
         juzEditWindow.setWindowTitle('QuranRevisor') # name of the window
         juzEditWindow.setWindowFlags(Qt.Window | Qt.WindowMinimizeButtonHint | Qt.WindowCloseButtonHint)
@@ -254,19 +254,15 @@ class Ui_juzEditWindow(object):
         if self.perfectRadio.isChecked():
             juz_num = int(selected_item.text().split()[-1])
             juzNumber_dictionary[f'Juz {juz_num}'] = 100
-            print(f'Juz {juz_num}' + f': {juzNumber_dictionary[f"Juz {juz_num}"]}')
         elif self.goodRadio.isChecked():
             juz_num = int(selected_item.text().split()[-1])
             juzNumber_dictionary[f'Juz {juz_num}'] = 75
-            print(f'Juz {juz_num}' + f': {juzNumber_dictionary[f"Juz {juz_num}"]}')
         elif self.okayRadio.isChecked():
             juz_num = int(selected_item.text().split()[-1])
             juzNumber_dictionary[f'Juz {juz_num}'] = 50
-            print(f'Juz {juz_num}' + f': {juzNumber_dictionary[f"Juz {juz_num}"]}')
         elif self.notAvailableRadio.isChecked():
             juz_num = int(selected_item.text().split()[-1])
             juzNumber_dictionary[f'Juz {juz_num}'] = 0
-            print(f'Juz {juz_num}' + f': {juzNumber_dictionary[f"Juz {juz_num}"]}')
         with open('data.json', 'w') as f:
             json.dump(juzNumber_dictionary, f)
 
